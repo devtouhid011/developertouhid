@@ -4,318 +4,166 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Touhidul Islam — Android App Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="Touhidul Islam - Professional Android App Developer from Netrokona, Bangladesh. 4+ years experience in Java, Kotlin, Firebase.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green: #00FF88;
-    --dark: #0a0a0f;
-    --dark2: #111118;
-    --dark3: #1a1a24;
-    --card: #13131c;
-    --border: rgba(0,255,136,0.15);
-    --text: #e8e8f0;
-    --muted: #8888aa;
-    --accent2: #7c3aed;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--dark);
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    overflow-x: hidden;
-    cursor: none;
-  }
-  .cursor {
-    position: fixed;
-    width: 12px; height: 12px;
-    background: var(--green);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.15s ease;
-    mix-blend-mode: difference;
-  }
-  .cursor-ring {
-    position: fixed;
-    width: 36px; height: 36px;
-    border: 1px solid var(--green);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transition: all 0.25s ease;
-    opacity: 0.5;
-  }
+:root{--green:#00FF88;--dark:#080810;--dark2:#0e0e18;--dark3:#161622;--card:#11111b;--card2:#18182a;--border:rgba(0,255,136,0.12);--border2:rgba(0,255,136,0.25);--text:#eeeef5;--muted:#7777aa;--purple:#7c3aed;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;}
+#cur{position:fixed;width:10px;height:10px;background:var(--green);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.15s;mix-blend-mode:difference;}
+#cur-ring{position:fixed;width:34px;height:34px;border:1.5px solid rgba(0,255,136,0.5);border-radius:50%;pointer-events:none;z-index:9998;}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.2rem 3rem;
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-size: 1.1rem; font-weight: 800; letter-spacing: 0.05em;
-    color: var(--green);
-    font-family: 'Space Mono', monospace;
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none; font-size: 0.85rem;
-    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--green); }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(8,8,16,0.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Space Mono',monospace;font-size:1rem;color:var(--green);font-weight:700;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;transition:color 0.2s;}
+.nav-links a:hover{color:var(--green);}
+.nav-cta{background:var(--green);color:#080810;padding:0.55rem 1.4rem;border-radius:6px;font-size:0.8rem;font-weight:700;text-decoration:none;letter-spacing:0.05em;transition:all 0.2s;cursor:none;}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,255,136,0.3);}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 6rem 3rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 20% 50%, rgba(0,255,136,0.04) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(124,58,237,0.06) 0%, transparent 50%);
-  }
-  .grid-overlay {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .hero-content { position: relative; z-index: 1; max-width: 750px; }
-  .hero-tag {
-    display: inline-block;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem; color: var(--green);
-    border: 1px solid var(--border);
-    padding: 0.4rem 1rem; border-radius: 100px;
-    margin-bottom: 2rem;
-    letter-spacing: 0.1em;
-    animation: fadeUp 0.6s ease both;
-  }
-  .hero-name {
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 800; line-height: 1;
-    margin-bottom: 0.5rem;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-  .hero-name span { color: var(--green); }
-  .hero-role {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    color: var(--muted); font-weight: 400;
-    margin-bottom: 2rem;
-    font-family: 'Space Mono', monospace;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-  .hero-desc {
-    font-size: 1.05rem; color: var(--muted); line-height: 1.7;
-    max-width: 500px; margin-bottom: 3rem;
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
-  .hero-btns {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    animation: fadeUp 0.6s 0.4s ease both;
-  }
-  .btn {
-    padding: 0.85rem 2rem; border-radius: 6px;
-    font-family: 'Syne', sans-serif; font-weight: 700;
-    font-size: 0.9rem; letter-spacing: 0.05em;
-    text-decoration: none; transition: all 0.2s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    cursor: none;
-  }
-  .btn-primary {
-    background: var(--green); color: #0a0a0f;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,255,136,0.3); }
-  .btn-outline {
-    border: 1px solid var(--border); color: var(--text);
-    background: transparent;
-  }
-  .btn-outline:hover { border-color: var(--green); color: var(--green); }
-  .hero-stats {
-    position: absolute; right: 3rem; top: 50%;
-    transform: translateY(-50%);
-    display: flex; flex-direction: column; gap: 2rem;
-    animation: fadeUp 0.6s 0.5s ease both;
-  }
-  .stat {
-    text-align: right;
-    border-right: 2px solid var(--green);
-    padding-right: 1.5rem;
-  }
-  .stat-num {
-    font-size: 2.5rem; font-weight: 800; color: var(--green);
-    line-height: 1; display: block;
-  }
-  .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 3rem 4rem;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,136,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.025) 1px,transparent 1px);background-size:70px 70px;}
+.hero-glow{position:absolute;top:20%;left:5%;width:500px;height:500px;background:radial-gradient(circle,rgba(0,255,136,0.05) 0%,transparent 70%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:10%;right:5%;width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;width:100%;max-width:1200px;margin:0 auto;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.6rem;font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--green);border:1px solid var(--border2);padding:0.45rem 1.1rem;border-radius:100px;margin-bottom:2rem;animation:fu 0.7s ease both;}
+.pulse{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;display:inline-block;}
+.hero-name{font-size:clamp(3.2rem,7vw,5.5rem);font-weight:800;line-height:0.95;margin-bottom:1rem;animation:fu 0.7s 0.1s ease both;}
+.hero-name em{color:var(--green);font-style:normal;display:block;}
+.hero-role{font-family:'Space Mono',monospace;font-size:clamp(0.85rem,2vw,1rem);color:var(--muted);margin-bottom:1.8rem;animation:fu 0.7s 0.2s ease both;}
+.hero-role span{color:var(--green);}
+.hero-desc{font-size:1rem;color:var(--muted);line-height:1.75;max-width:480px;margin-bottom:2.5rem;animation:fu 0.7s 0.3s ease both;}
+.hero-btns{display:flex;gap:0.9rem;flex-wrap:wrap;animation:fu 0.7s 0.4s ease both;}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;border-radius:7px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;text-decoration:none;transition:all 0.2s;cursor:none;letter-spacing:0.03em;}
+.btn-g{background:var(--green);color:#080810;}
+.btn-g:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,255,136,0.35);}
+.btn-o{border:1px solid var(--border2);color:var(--text);}
+.btn-o:hover{border-color:var(--green);color:var(--green);}
+.btn-w{background:#25D366;color:#fff;}
+.btn-w:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,211,102,0.35);}
+.btn-yt{background:#FF0000;color:#fff;}
+.btn-yt:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,0,0,0.3);}
+.hero-right{display:flex;flex-direction:column;gap:1.5rem;animation:fu 0.7s 0.5s ease both;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem 2rem;text-align:center;min-width:140px;}
+.stat-num{font-size:2.8rem;font-weight:800;color:var(--green);line-height:1;display:block;}
+.stat-lbl{font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;font-family:'Space Mono',monospace;}
 
-  /* SECTIONS */
-  section { padding: 6rem 3rem; }
-  .section-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem; color: var(--green);
-    letter-spacing: 0.15em; text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-  .section-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800; margin-bottom: 3rem;
-  }
+/* MARQUEE */
+.marquee-wrap{background:var(--green);padding:0.7rem 0;overflow:hidden;white-space:nowrap;}
+.marquee-inner{display:inline-flex;gap:3rem;animation:marquee 20s linear infinite;}
+.mitem{font-family:'Space Mono',monospace;font-size:0.75rem;font-weight:700;color:#080810;letter-spacing:0.12em;text-transform:uppercase;}
 
-  /* SKILLS */
-  .skills-section { background: var(--dark2); }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1rem;
-  }
-  .skill-chip {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.2rem 1rem;
-    text-align: center;
-    transition: all 0.2s;
-    position: relative; overflow: hidden;
-  }
-  .skill-chip::before {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 2px; background: var(--green);
-    transform: scaleX(0); transition: transform 0.3s;
-    transform-origin: left;
-  }
-  .skill-chip:hover { border-color: rgba(0,255,136,0.4); transform: translateY(-3px); }
-  .skill-chip:hover::before { transform: scaleX(1); }
-  .skill-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
-  .skill-name { font-size: 0.85rem; font-weight: 700; color: var(--text); }
-  .skill-type { font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; font-family: 'Space Mono', monospace; }
+/* SECTIONS */
+.sec{padding:6rem 3rem;}
+.sec-inner{max-width:1200px;margin:0 auto;}
+.sec-alt{background:var(--dark2);}
+.sec-tag{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.6rem;}
+.sec-title{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;margin-bottom:3rem;}
 
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 2rem;
-    transition: all 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .project-card::after {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--green), var(--accent2));
-    transform: scaleX(0); transition: transform 0.3s;
-    transform-origin: left;
-  }
-  .project-card:hover { transform: translateY(-5px); border-color: rgba(0,255,136,0.3); }
-  .project-card:hover::after { transform: scaleX(1); }
-  .project-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem; color: var(--green);
-    margin-bottom: 1rem; letter-spacing: 0.1em;
-  }
-  .project-name {
-    font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem;
-  }
-  .project-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
-  .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
-  .tag {
-    font-size: 0.7rem; font-family: 'Space Mono', monospace;
-    padding: 0.3rem 0.7rem; border-radius: 100px;
-    border: 1px solid var(--border); color: var(--muted);
-  }
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.about-photo-wrap{position:relative;}
+.about-photo{width:100%;aspect-ratio:1;border-radius:16px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:7rem;overflow:hidden;}
+.about-photo img{width:100%;height:100%;object-fit:cover;}
+.about-corner{position:absolute;bottom:-16px;right:-16px;background:var(--green);color:#080810;padding:0.8rem 1.2rem;border-radius:10px;font-weight:800;font-size:0.85rem;font-family:'Space Mono',monospace;}
+.about-text p{font-size:0.98rem;color:var(--muted);line-height:1.8;margin-bottom:1.2rem;}
+.about-tags{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.5rem;}
+.atag{border:1px solid var(--border2);color:var(--green);padding:0.35rem 0.9rem;border-radius:100px;font-size:0.78rem;font-family:'Space Mono',monospace;}
 
-  /* CV SECTION */
-  .cv-section { background: var(--dark2); }
-  .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-  .cv-block h3 {
-    font-size: 1rem; font-weight: 700; color: var(--green);
-    text-transform: uppercase; letter-spacing: 0.1em;
-    margin-bottom: 1.5rem;
-    font-family: 'Space Mono', monospace;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .cv-item { margin-bottom: 1.5rem; padding-left: 1rem; border-left: 2px solid var(--border); }
-  .cv-item:hover { border-left-color: var(--green); }
-  .cv-item-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.2rem; }
-  .cv-item-sub { font-size: 0.85rem; color: var(--green); margin-bottom: 0.3rem; font-family: 'Space Mono', monospace; }
-  .cv-item-date { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; }
-  .cv-item-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-  .skill-bar-wrap { margin-bottom: 1rem; }
-  .skill-bar-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.4rem; }
-  .skill-bar-label span:last-child { color: var(--green); font-family: 'Space Mono', monospace; font-size: 0.75rem; }
-  .skill-bar-bg { height: 4px; background: var(--dark3); border-radius: 2px; }
-  .skill-bar-fill {
-    height: 4px; border-radius: 2px;
-    background: linear-gradient(90deg, var(--green), var(--accent2));
-    transition: width 1.5s ease;
-  }
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem;}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem 1rem;text-align:center;transition:all 0.25s;position:relative;overflow:hidden;}
+.skill-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--purple));transform:scaleX(0);transition:transform 0.3s;transform-origin:left;}
+.skill-card:hover{border-color:var(--border2);transform:translateY(-4px);}
+.skill-card:hover::before{transform:scaleX(1);}
+.sk-icon{font-size:2rem;display:block;margin-bottom:0.6rem;}
+.sk-name{font-size:0.85rem;font-weight:700;}
+.sk-cat{font-size:0.68rem;color:var(--muted);margin-top:0.2rem;font-family:'Space Mono',monospace;}
 
-  /* CONTACT */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-  .contact-info { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-item {
-    display: flex; align-items: center; gap: 1rem;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 10px; padding: 1.2rem 1.5rem;
-    text-decoration: none; color: var(--text);
-    transition: all 0.2s;
-  }
-  .contact-item:hover { border-color: var(--green); transform: translateX(4px); }
-  .contact-icon { font-size: 1.4rem; }
-  .contact-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem; }
-  .contact-val { font-size: 0.95rem; font-weight: 600; }
-  .contact-big-text { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.3; margin-bottom: 1.5rem; }
-  .contact-big-text span { color: var(--green); }
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.5rem;}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all 0.3s;display:flex;flex-direction:column;}
+.proj-card:hover{transform:translateY(-6px);border-color:var(--border2);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.proj-img{width:100%;height:170px;background:var(--dark3);display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.proj-img img{width:100%;height:100%;object-fit:cover;}
+.proj-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
+.proj-num{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--green);letter-spacing:0.1em;margin-bottom:0.5rem;}
+.proj-name{font-size:1.2rem;font-weight:800;margin-bottom:0.6rem;}
+.proj-desc{font-size:0.85rem;color:var(--muted);line-height:1.65;flex:1;}
+.proj-tags{display:flex;gap:0.4rem;flex-wrap:wrap;margin:1rem 0;}
+.ptag{font-size:0.68rem;font-family:'Space Mono',monospace;padding:0.25rem 0.65rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);}
+.proj-btns{display:flex;gap:0.6rem;flex-wrap:wrap;}
+.pbtn{display:inline-flex;align-items:center;gap:0.35rem;padding:0.5rem 1rem;border-radius:6px;font-size:0.78rem;font-weight:700;text-decoration:none;transition:all 0.2s;cursor:none;font-family:'Syne',sans-serif;}
+.pbtn-g{background:var(--green);color:#080810;}
+.pbtn-g:hover{box-shadow:0 4px 16px rgba(0,255,136,0.3);transform:translateY(-1px);}
+.pbtn-o{border:1px solid var(--border2);color:var(--text);}
+.pbtn-o:hover{border-color:var(--green);color:var(--green);}
 
-  /* FOOTER */
-  footer {
-    text-align: center; padding: 2rem;
-    border-top: 1px solid var(--border);
-    font-size: 0.8rem; color: var(--muted);
-    font-family: 'Space Mono', monospace;
-  }
+/* CV */
+.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+.cv-block{margin-bottom:2.5rem;}
+.cv-block-title{font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--green);letter-spacing:0.12em;text-transform:uppercase;padding-bottom:0.75rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+.cv-item{padding-left:1rem;border-left:2px solid var(--border);margin-bottom:1.5rem;transition:border-color 0.2s;}
+.cv-item:hover{border-left-color:var(--green);}
+.cv-item-title{font-weight:700;font-size:0.98rem;margin-bottom:0.2rem;}
+.cv-item-sub{font-size:0.8rem;color:var(--green);font-family:'Space Mono',monospace;margin-bottom:0.2rem;}
+.cv-item-date{font-size:0.72rem;color:var(--muted);margin-bottom:0.4rem;}
+.cv-item-desc{font-size:0.83rem;color:var(--muted);line-height:1.6;}
+.bar-wrap{margin-bottom:1rem;}
+.bar-head{display:flex;justify-content:space-between;font-size:0.83rem;margin-bottom:0.4rem;}
+.bar-head span:last-child{color:var(--green);font-family:'Space Mono',monospace;font-size:0.72rem;}
+.bar-bg{height:3px;background:var(--dark3);border-radius:2px;}
+.bar-fill{height:3px;border-radius:2px;background:linear-gradient(90deg,var(--green),var(--purple));width:0;transition:width 1.5s ease;}
+.cv-dl-btn{display:inline-flex;align-items:center;gap:0.6rem;background:var(--green);color:#080810;padding:0.9rem 2rem;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;transition:all 0.2s;cursor:none;}
+.cv-dl-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,255,136,0.3);}
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.contact-big{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.2;margin-bottom:1.2rem;}
+.contact-big span{color:var(--green);}
+.contact-sub{color:var(--muted);line-height:1.75;margin-bottom:2.5rem;font-size:0.95rem;}
+.c-links{display:flex;flex-direction:column;gap:0.9rem;}
+.c-link{display:flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.3rem;text-decoration:none;color:var(--text);transition:all 0.2s;}
+.c-link:hover{border-color:var(--green);transform:translateX(5px);}
+.c-icon{font-size:1.3rem;min-width:36px;text-align:center;}
+.c-label{font-size:0.7rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;font-family:'Space Mono',monospace;}
+.c-val{font-size:0.9rem;font-weight:600;margin-top:0.1rem;}
+.contact-card{background:var(--card2);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;}
+.cc-avatar{width:80px;height:80px;background:rgba(0,255,136,0.1);border:2px solid var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 1.5rem;}
+.contact-card h3{font-size:1.4rem;font-weight:800;margin-bottom:0.5rem;}
+.contact-card p{color:var(--muted);font-size:0.88rem;line-height:1.65;margin-bottom:2rem;}
+.cc-btns{display:flex;flex-direction:column;gap:0.8rem;}
 
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    section { padding: 4rem 1.5rem; }
-    .hero { padding: 6rem 1.5rem 4rem; }
-    .hero-stats { display: none; }
-    .cv-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-  }
+footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--muted);}
+footer a{color:var(--green);text-decoration:none;}
+
+@keyframes fu{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links,.nav-cta{display:none;}
+  .sec{padding:4rem 1.5rem;}
+  .hero{padding:6rem 1.5rem 3rem;}
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-right{flex-direction:row;justify-content:center;}
+  .about-grid,.cv-grid,.contact-grid{grid-template-columns:1fr;}
+  .about-photo{max-width:260px;margin:0 auto;}
+}
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div id="cur"></div>
+<div id="cur-ring"></div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">TI.dev</div>
+  <div class="logo">TI<span style="color:var(--muted);">.dev</span></div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -323,223 +171,264 @@
     <li><a href="#cv">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <a href="https://wa.me/8801730502345" target="_blank" class="nav-cta">Hire Me →</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="about">
-  <div class="hero-bg"></div>
-  <div class="grid-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-tag">&#x2726; Available for Freelance</div>
-    <h1 class="hero-name">Touhidul<br><span>Islam</span></h1>
-    <p class="hero-role">Android App Developer</p>
-    <p class="hero-desc">
-      Crafting powerful Android applications with Java & Kotlin. Based in Netrokona, Bangladesh — turning ideas into production-ready apps since 2020.
-    </p>
-    <div class="hero-btns">
-      <a href="#projects" class="btn btn-primary">&#x25B6; View Projects</a>
-      <a href="#contact" class="btn btn-outline">Contact Me</a>
-      <a href="#cv" class="btn btn-outline">&#x2193; Download CV</a>
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge"><span class="pulse"></span> Available for Freelance Projects</div>
+      <h1 class="hero-name">Touhidul<em>Islam</em></h1>
+      <p class="hero-role">Android App Developer &nbsp;<span>//</span>&nbsp; YouTuber</p>
+      <p class="hero-desc">Building powerful, production-ready Android apps with Java &amp; Kotlin. 4+ years turning ideas into apps that real people use — from fintech to lifestyle.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-g">▶ See My Work</a>
+        <a href="https://wa.me/8801730502345" target="_blank" class="btn btn-w">💬 WhatsApp</a>
+        <a href="https://www.youtube.com/@onlineguidelines" target="_blank" class="btn btn-yt">▶ YouTube</a>
+        <a href="#cv" class="btn btn-o">↓ Resume</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-card"><span class="stat-num">4+</span><span class="stat-lbl">Years Exp.</span></div>
+      <div class="stat-card"><span class="stat-num">4</span><span class="stat-lbl">Apps Built</span></div>
+      <div class="stat-card"><span class="stat-num">8+</span><span class="stat-lbl">Technologies</span></div>
     </div>
   </div>
-  <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-num">4+</span>
-      <span class="stat-label">Years Experience</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">4</span>
-      <span class="stat-label">Apps Built</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">8+</span>
-      <span class="stat-label">Technologies</span>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="mitem">Android Developer</span><span class="mitem">★</span>
+    <span class="mitem">Java &amp; Kotlin</span><span class="mitem">★</span>
+    <span class="mitem">Firebase Expert</span><span class="mitem">★</span>
+    <span class="mitem">REST API Integration</span><span class="mitem">★</span>
+    <span class="mitem">PHP Backend</span><span class="mitem">★</span>
+    <span class="mitem">YouTube Creator</span><span class="mitem">★</span>
+    <span class="mitem">Netrokona, Bangladesh</span><span class="mitem">★</span>
+    <span class="mitem">Android Developer</span><span class="mitem">★</span>
+    <span class="mitem">Java &amp; Kotlin</span><span class="mitem">★</span>
+    <span class="mitem">Firebase Expert</span><span class="mitem">★</span>
+    <span class="mitem">REST API Integration</span><span class="mitem">★</span>
+    <span class="mitem">PHP Backend</span><span class="mitem">★</span>
+    <span class="mitem">YouTube Creator</span><span class="mitem">★</span>
+    <span class="mitem">Netrokona, Bangladesh</span><span class="mitem">★</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="sec-inner">
+    <div class="about-grid">
+      <div class="about-photo-wrap">
+        <div class="about-photo">
+          <!--
+            📸 APNAR PHOTO ADD KORTE:
+            Nicher emoji ta delete korun, er jaygay likun:
+            <img src="APNAR_PHOTO_LINK" alt="Touhidul Islam">
+          -->
+          🧑‍💻
+        </div>
+        <div class="about-corner">4+ Yrs Experience</div>
+      </div>
+      <div class="about-text">
+        <div class="sec-tag">● Who I am</div>
+        <h2 class="sec-title" style="margin-bottom:1.5rem;">About Me</h2>
+        <p>Hi! I'm <strong style="color:var(--text);">Touhidul Islam</strong>, a passionate Android App Developer based in Netrokona, Bangladesh. I specialize in building clean, fast, and user-friendly Android applications.</p>
+        <p>With 4+ years of hands-on experience, I've delivered apps ranging from fintech platforms to expat services — always focused on quality and real user impact.</p>
+        <p>I also run a <strong style="color:var(--text);">YouTube channel (Online Guidelines)</strong> where I share Android development tutorials and tech guides for the Bengali developer community.</p>
+        <div class="about-tags">
+          <span class="atag">📍 Netrokona, BD</span>
+          <span class="atag">🎓 BSc Running</span>
+          <span class="atag">💼 Freelancer</span>
+          <span class="atag">▶ YouTuber</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SKILLS -->
-<section class="skills-section" id="skills">
-  <div class="section-tag">&#x25CF; What I know</div>
-  <h2 class="section-title">Skills & Technologies</h2>
-  <div class="skills-grid">
-    <div class="skill-chip">
-      <span class="skill-icon">☕</span>
-      <div class="skill-name">Java</div>
-      <div class="skill-type">Core Lang</div>
-    </div>
-    <div class="skill-chip">
-      <span class="skill-icon">🎯</span>
-      <div class="skill-name">Kotlin</div>
-      <div class="skill-type">Core Lang</div>
-    </div>
-    <div class="skill-chip">
-      <span class="skill-icon">🤖</span>
-      <div class="skill-name">Android</div>
-      <div class="skill-type">Platform</div>
-    </div>
-    <div class="skill-chip">
-      <span class="skill-icon">🐘</span>
-      <div class="skill-name">PHP</div>
-      <div class="skill-type">Backend</div>
-    </div>
-    <div class="skill-chip">
-      <span class="skill-icon">🗄️</span>
-      <div class="skill-name">MySQL</div>
-      <div class="skill-type">Database</div>
-    </div>
-    <div class="skill-chip">
-      <span class="skill-icon">📄</span>
-      <div class="skill-name">XML</div>
-      <div class="skill-type">UI Layout</div>
-    </div>
-    <div class="skill-chip">
-      <span class="skill-icon">📦</span>
-      <div class="skill-name">JSON</div>
-      <div class="skill-type">Data Format</div>
-    </div>
-    <div class="skill-chip">
-      <span class="skill-icon">🔥</span>
-      <div class="skill-name">Firebase</div>
-      <div class="skill-type">BaaS</div>
-    </div>
-    <div class="skill-chip">
-      <span class="skill-icon">🔌</span>
-      <div class="skill-name">REST API</div>
-      <div class="skill-type">Integration</div>
+<section class="sec sec-alt" id="skills">
+  <div class="sec-inner">
+    <div class="sec-tag">● What I know</div>
+    <h2 class="sec-title">Skills &amp; Technologies</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="sk-icon">☕</span><div class="sk-name">Java</div><div class="sk-cat">Core Lang</div></div>
+      <div class="skill-card"><span class="sk-icon">🎯</span><div class="sk-name">Kotlin</div><div class="sk-cat">Core Lang</div></div>
+      <div class="skill-card"><span class="sk-icon">🤖</span><div class="sk-name">Android SDK</div><div class="sk-cat">Platform</div></div>
+      <div class="skill-card"><span class="sk-icon">🔥</span><div class="sk-name">Firebase</div><div class="sk-cat">Backend/DB</div></div>
+      <div class="skill-card"><span class="sk-icon">🐘</span><div class="sk-name">PHP</div><div class="sk-cat">Backend</div></div>
+      <div class="skill-card"><span class="sk-icon">🗄️</span><div class="sk-name">MySQL</div><div class="sk-cat">Database</div></div>
+      <div class="skill-card"><span class="sk-icon">📄</span><div class="sk-name">XML</div><div class="sk-cat">UI Layout</div></div>
+      <div class="skill-card"><span class="sk-icon">📦</span><div class="sk-name">JSON</div><div class="sk-cat">Data Format</div></div>
+      <div class="skill-card"><span class="sk-icon">🔌</span><div class="sk-name">REST API</div><div class="sk-cat">Integration</div></div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
-  <div class="section-tag">&#x25CF; What I built</div>
-  <h2 class="section-title">Featured Projects</h2>
-  <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-num">01 — Android App</div>
-      <div class="project-name">NeedPay</div>
-      <p class="project-desc">A fintech Android application for seamless digital payment and money management solutions.</p>
-      <div class="project-tags">
-        <span class="tag">Java</span>
-        <span class="tag">Firebase</span>
-        <span class="tag">API</span>
+<section class="sec" id="projects">
+  <div class="sec-inner">
+    <div class="sec-tag">● What I built</div>
+    <h2 class="sec-title">Featured Projects</h2>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-img">
+          <!--
+            📸 SCREENSHOT ADD KORTE:
+            Emoji delete korun, er jaygay:
+            <img src="SCREENSHOT_URL" alt="NeedPay">
+          -->
+          💳
+        </div>
+        <div class="proj-body">
+          <div class="proj-num">01 — Fintech App</div>
+          <div class="proj-name">NeedPay</div>
+          <p class="proj-desc">A fintech Android application for seamless digital payment and money management. Fast, secure, and user-friendly.</p>
+          <div class="proj-tags">
+            <span class="ptag">Java</span><span class="ptag">Firebase</span><span class="ptag">REST API</span>
+          </div>
+          <div class="proj-btns">
+            <!-- 🔗 Play Store link: # jaygay apnar link dao -->
+            <a href="#" class="pbtn pbtn-g">▶ Play Store</a>
+            <!-- 📥 APK link: # jaygay apnar link dao -->
+            <a href="#" class="pbtn pbtn-o">⬇ APK</a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="project-card">
-      <div class="project-num">02 — Android App</div>
-      <div class="project-name">Probashi On</div>
-      <p class="project-desc">A dedicated platform for expatriates (probashi) to stay connected and access essential services from abroad.</p>
-      <div class="project-tags">
-        <span class="tag">Kotlin</span>
-        <span class="tag">PHP Backend</span>
-        <span class="tag">MySQL</span>
+
+      <div class="proj-card">
+        <div class="proj-img">
+          <!-- 📸 <img src="SCREENSHOT_URL" alt="Probashi On"> -->
+          ✈️
+        </div>
+        <div class="proj-body">
+          <div class="proj-num">02 — Service App</div>
+          <div class="proj-name">Probashi On</div>
+          <p class="proj-desc">A dedicated platform for Bangladeshi expatriates to stay connected and access essential services from anywhere in the world.</p>
+          <div class="proj-tags">
+            <span class="ptag">Kotlin</span><span class="ptag">PHP</span><span class="ptag">MySQL</span>
+          </div>
+          <div class="proj-btns">
+            <a href="#" class="pbtn pbtn-g">▶ Play Store</a>
+            <a href="#" class="pbtn pbtn-o">⬇ APK</a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="project-card">
-      <div class="project-num">03 — Android App</div>
-      <div class="project-name">Lenden Pro</div>
-      <p class="project-desc">A professional lending and borrowing management app for tracking financial transactions efficiently.</p>
-      <div class="project-tags">
-        <span class="tag">Java</span>
-        <span class="tag">Firebase</span>
-        <span class="tag">JSON</span>
+
+      <div class="proj-card">
+        <div class="proj-img">
+          <!-- 📸 <img src="SCREENSHOT_URL" alt="Lenden Pro"> -->
+          💰
+        </div>
+        <div class="proj-body">
+          <div class="proj-num">03 — Finance App</div>
+          <div class="proj-name">Lenden Pro</div>
+          <p class="proj-desc">Professional lending &amp; borrowing tracker. Helps users manage personal financial transactions with clarity and ease.</p>
+          <div class="proj-tags">
+            <span class="ptag">Java</span><span class="ptag">Firebase</span><span class="ptag">JSON</span>
+          </div>
+          <div class="proj-btns">
+            <a href="#" class="pbtn pbtn-g">▶ Play Store</a>
+            <a href="#" class="pbtn pbtn-o">⬇ APK</a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="project-card">
-      <div class="project-num">04 — Android App</div>
-      <div class="project-name">Noorzen</div>
-      <p class="project-desc">A feature-rich Android application developed with modern architecture and clean user interface design.</p>
-      <div class="project-tags">
-        <span class="tag">Kotlin</span>
-        <span class="tag">XML</span>
-        <span class="tag">REST API</span>
+
+      <div class="proj-card">
+        <div class="proj-img">
+          <!-- 📸 <img src="SCREENSHOT_URL" alt="Noorzen"> -->
+          🌟
+        </div>
+        <div class="proj-body">
+          <div class="proj-num">04 — Utility App</div>
+          <div class="proj-name">Noorzen</div>
+          <p class="proj-desc">A feature-rich Android application with modern architecture, clean UI design, and smooth user experience.</p>
+          <div class="proj-tags">
+            <span class="ptag">Kotlin</span><span class="ptag">XML</span><span class="ptag">REST API</span>
+          </div>
+          <div class="proj-btns">
+            <a href="#" class="pbtn pbtn-g">▶ Play Store</a>
+            <a href="#" class="pbtn pbtn-o">⬇ APK</a>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- CV / RESUME -->
-<section class="cv-section" id="cv">
-  <div class="section-tag">&#x25CF; My Resume</div>
-  <h2 class="section-title">Curriculum Vitae</h2>
-  <div class="cv-grid">
-    <div>
-      <!-- Experience -->
-      <div class="cv-block">
-        <h3>&#x25B6; Experience</h3>
-        <div class="cv-item">
-          <div class="cv-item-title">Android App Developer</div>
-          <div class="cv-item-sub">Freelance / Independent</div>
-          <div class="cv-item-date">2020 — Present (4+ Years)</div>
-          <div class="cv-item-desc">Designing, building, and publishing Android apps for clients and personal projects. Specialized in fintech, utility, and service-based apps.</div>
+<!-- CV -->
+<section class="sec sec-alt" id="cv">
+  <div class="sec-inner">
+    <div class="sec-tag">● My Resume</div>
+    <h2 class="sec-title">Curriculum Vitae</h2>
+    <div class="cv-grid">
+      <div>
+        <div class="cv-block">
+          <div class="cv-block-title">▶ Experience</div>
+          <div class="cv-item">
+            <div class="cv-item-title">Android App Developer</div>
+            <div class="cv-item-sub">Freelance / Independent</div>
+            <div class="cv-item-date">2020 — Present (4+ Years)</div>
+            <div class="cv-item-desc">Designing, developing, and publishing Android applications. Worked on fintech, expat services, finance trackers, and more — end-to-end delivery from UI to backend integration.</div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-item-title">Content Creator</div>
+            <div class="cv-item-sub">YouTube — Online Guidelines</div>
+            <div class="cv-item-date">Ongoing</div>
+            <div class="cv-item-desc">Sharing Android development tutorials, tips, and guides for the Bengali-speaking tech community.</div>
+          </div>
         </div>
-        <div class="cv-item">
-          <div class="cv-item-title">Content Creator</div>
-          <div class="cv-item-sub">YouTube — Online Guidelines</div>
-          <div class="cv-item-date">Ongoing</div>
-          <div class="cv-item-desc">Sharing Android development tips, tutorials, and tech guides on YouTube for the Bengali-speaking developer community.</div>
+        <div class="cv-block">
+          <div class="cv-block-title">▶ Education</div>
+          <div class="cv-item">
+            <div class="cv-item-title">Bachelor of Degree</div>
+            <div class="cv-item-sub">Currently Running</div>
+            <div class="cv-item-date">Present</div>
+            <div class="cv-item-desc">Pursuing undergraduate degree alongside professional freelance work.</div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-item-title">HSC — Higher Secondary</div>
+            <div class="cv-item-sub">Completed</div>
+            <div class="cv-item-date">Netrokona, Bangladesh</div>
+          </div>
         </div>
-      </div>
-      <!-- Education -->
-      <div class="cv-block" style="margin-top:2.5rem;">
-        <h3>&#x25B6; Education</h3>
-        <div class="cv-item">
-          <div class="cv-item-title">Bachelor of Degree</div>
-          <div class="cv-item-sub">Currently Running</div>
-          <div class="cv-item-date">Present</div>
-          <div class="cv-item-desc">Pursuing undergraduate degree alongside professional development work.</div>
-        </div>
-        <div class="cv-item">
-          <div class="cv-item-title">HSC — Higher Secondary</div>
-          <div class="cv-item-sub">Completed</div>
-          <div class="cv-item-date">Netrokona, Bangladesh</div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <!-- Skill Proficiency -->
-      <div class="cv-block">
-        <h3>&#x25B6; Proficiency</h3>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>Java</span><span>90%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
-        </div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>Kotlin</span><span>85%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
-        </div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>Android SDK</span><span>90%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
-        </div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>Firebase</span><span>80%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
-        </div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>PHP & MySQL</span><span>75%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div>
-        </div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-label"><span>REST API</span><span>85%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+        <div class="cv-block">
+          <div class="cv-block-title">▶ Download CV</div>
+          <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;">Get my full resume as a PDF file.</p>
+          <!--
+            📥 CV DOWNLOAD LINK:
+            # jaygay apnar Google Drive PDF link dao
+            Example: https://drive.google.com/file/d/XXXXX/view
+          -->
+          <a href="#" class="cv-dl-btn">⬇ Download CV (PDF)</a>
         </div>
       </div>
-      <!-- Personal Info -->
-      <div class="cv-block" style="margin-top:2.5rem;">
-        <h3>&#x25B6; Personal Info</h3>
-        <div class="cv-item">
-          <div class="cv-item-title">Location</div>
-          <div class="cv-item-desc">Netrokona, Bangladesh</div>
+      <div>
+        <div class="cv-block">
+          <div class="cv-block-title">▶ Skill Proficiency</div>
+          <div class="bar-wrap"><div class="bar-head"><span>Java</span><span>90%</span></div><div class="bar-bg"><div class="bar-fill" data-w="90%"></div></div></div>
+          <div class="bar-wrap"><div class="bar-head"><span>Kotlin</span><span>85%</span></div><div class="bar-bg"><div class="bar-fill" data-w="85%"></div></div></div>
+          <div class="bar-wrap"><div class="bar-head"><span>Android SDK</span><span>90%</span></div><div class="bar-bg"><div class="bar-fill" data-w="90%"></div></div></div>
+          <div class="bar-wrap"><div class="bar-head"><span>Firebase</span><span>82%</span></div><div class="bar-bg"><div class="bar-fill" data-w="82%"></div></div></div>
+          <div class="bar-wrap"><div class="bar-head"><span>PHP &amp; MySQL</span><span>75%</span></div><div class="bar-bg"><div class="bar-fill" data-w="75%"></div></div></div>
+          <div class="bar-wrap"><div class="bar-head"><span>REST API</span><span>85%</span></div><div class="bar-bg"><div class="bar-fill" data-w="85%"></div></div></div>
+          <div class="bar-wrap"><div class="bar-head"><span>XML / UI Design</span><span>88%</span></div><div class="bar-bg"><div class="bar-fill" data-w="88%"></div></div></div>
         </div>
-        <div class="cv-item">
-          <div class="cv-item-title">Availability</div>
-          <div class="cv-item-desc">Open for freelance & remote work</div>
-        </div>
-        <div class="cv-item">
-          <div class="cv-item-title">Languages</div>
-          <div class="cv-item-desc">Bengali (Native), English (Professional)</div>
+        <div class="cv-block">
+          <div class="cv-block-title">▶ Personal Info</div>
+          <div class="cv-item"><div class="cv-item-title">📍 Location</div><div class="cv-item-desc">Netrokona, Bangladesh</div></div>
+          <div class="cv-item"><div class="cv-item-title">✉️ Email</div><div class="cv-item-desc">mdtouhidulislam273@gmail.com</div></div>
+          <div class="cv-item"><div class="cv-item-title">💬 WhatsApp</div><div class="cv-item-desc">+880 1730-502345</div></div>
+          <div class="cv-item"><div class="cv-item-title">🌐 Languages</div><div class="cv-item-desc">Bengali (Native) · English (Professional)</div></div>
+          <div class="cv-item"><div class="cv-item-title">💼 Availability</div><div class="cv-item-desc">Open for Freelance &amp; Remote Projects</div></div>
         </div>
       </div>
     </div>
@@ -547,102 +436,84 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-  <div class="section-tag">&#x25CF; Get in touch</div>
-  <div class="contact-grid">
-    <div>
-      <p class="contact-big-text">Let's build something <span>amazing</span> together</p>
-      <p style="color:var(--muted); line-height:1.7; margin-bottom:2rem;">Have an app idea? Need an experienced Android developer? I'm just a message away. Let's talk!</p>
-      <div class="contact-info">
-        <a href="mailto:mdtouhidulislam273@gmail.com" class="contact-item">
-          <span class="contact-icon">✉️</span>
-          <div>
-            <div class="contact-label">Email</div>
-            <div class="contact-val">mdtouhidulislam273@gmail.com</div>
+<section class="sec" id="contact">
+  <div class="sec-inner">
+    <div class="sec-tag">● Get in touch</div>
+    <div class="contact-grid">
+      <div>
+        <h2 class="contact-big">Let's build something <span>amazing</span> together</h2>
+        <p class="contact-sub">Have an app idea? Need an experienced Android developer for your next project? I'm just one message away. Let's talk!</p>
+        <div class="c-links">
+          <a href="mailto:mdtouhidulislam273@gmail.com" class="c-link">
+            <div class="c-icon">✉️</div>
+            <div><div class="c-label">Email</div><div class="c-val">mdtouhidulislam273@gmail.com</div></div>
+          </a>
+          <a href="https://wa.me/8801730502345" target="_blank" class="c-link">
+            <div class="c-icon">💬</div>
+            <div><div class="c-label">WhatsApp</div><div class="c-val">+880 1730-502345</div></div>
+          </a>
+          <a href="https://www.youtube.com/@onlineguidelines" target="_blank" class="c-link">
+            <div class="c-icon">▶️</div>
+            <div><div class="c-label">YouTube Channel</div><div class="c-val">@onlineguidelines</div></div>
+          </a>
+          <div class="c-link" style="cursor:default;">
+            <div class="c-icon">📍</div>
+            <div><div class="c-label">Location</div><div class="c-val">Netrokona, Bangladesh</div></div>
           </div>
-        </a>
-        <a href="https://wa.me/8801730502345" target="_blank" class="contact-item">
-          <span class="contact-icon">💬</span>
-          <div>
-            <div class="contact-label">WhatsApp</div>
-            <div class="contact-val">+880 1730-502345</div>
-          </div>
-        </a>
-        <a href="https://www.youtube.com/@onlineguidelines" target="_blank" class="contact-item">
-          <span class="contact-icon">▶️</span>
-          <div>
-            <div class="contact-label">YouTube</div>
-            <div class="contact-val">@onlineguidelines</div>
-          </div>
-        </a>
-        <a href="https://www.youtube.com/@onlineguidelines" target="_blank" class="contact-item">
-          <span class="contact-icon">📍</span>
-          <div>
-            <div class="contact-label">Location</div>
-            <div class="contact-val">Netrokona, Bangladesh</div>
-          </div>
-        </a>
+        </div>
       </div>
-    </div>
-    <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:3rem; text-align:center;">
-      <div style="font-size:4rem; margin-bottom:1.5rem;">🤖</div>
-      <div style="font-size:1.5rem; font-weight:800; margin-bottom:0.75rem;">Android Developer</div>
-      <div style="color:var(--muted); margin-bottom:2rem; font-size:0.9rem; line-height:1.6;">4+ years of experience building production-grade apps for real users</div>
-      <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
-        <div style="background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.2); border-radius:100px; padding:0.4rem 1rem; font-size:0.8rem; color:var(--green);">Java</div>
-        <div style="background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.2); border-radius:100px; padding:0.4rem 1rem; font-size:0.8rem; color:var(--green);">Kotlin</div>
-        <div style="background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.2); border-radius:100px; padding:0.4rem 1rem; font-size:0.8rem; color:var(--green);">Firebase</div>
-        <div style="background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.2); border-radius:100px; padding:0.4rem 1rem; font-size:0.8rem; color:var(--green);">PHP</div>
+      <div class="contact-card">
+        <div class="cc-avatar">🤖</div>
+        <h3>Touhidul Islam</h3>
+        <p>Professional Android Developer with 4+ years of experience. Available for freelance, remote, and contract work.</p>
+        <div class="cc-btns">
+          <a href="https://wa.me/8801730502345" target="_blank" class="btn btn-w" style="justify-content:center;">💬 Message on WhatsApp</a>
+          <a href="mailto:mdtouhidulislam273@gmail.com" class="btn btn-g" style="justify-content:center;">✉️ Send Email</a>
+          <a href="https://www.youtube.com/@onlineguidelines" target="_blank" class="btn btn-yt" style="justify-content:center;">▶ Visit YouTube</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>&#x00A9; 2025 Touhidul Islam &nbsp;|&nbsp; Android App Developer &nbsp;|&nbsp; Netrokona, Bangladesh</p>
+  <p>© 2025 <a href="#">Touhidul Islam</a> &nbsp;·&nbsp; Android App Developer &nbsp;·&nbsp; Netrokona, Bangladesh</p>
+  <p style="margin-top:0.5rem;font-size:0.65rem;"><a href="https://www.youtube.com/@onlineguidelines">@onlineguidelines</a> on YouTube</p>
 </footer>
 
 <script>
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=(mx-5)+'px';cur.style.top=(my-5)+'px';
+});
+(function loop(){
+  rx+=(mx-rx)*0.1;ry+=(my-ry)*0.1;
+  ring.style.left=(rx-17)+'px';ring.style.top=(ry-17)+'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2.5)';ring.style.transform='scale(1.6)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.transform='scale(1)';});
+});
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx - 6 + 'px';
-    cursor.style.top = my - 6 + 'px';
-  });
+// Skill bars animate on scroll
+const bars=document.querySelectorAll('.bar-fill');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){bars.forEach(b=>{b.style.width=b.dataset.w;});obs.disconnect();}});
+},{threshold:0.2});
+const cvEl=document.getElementById('cv');
+if(cvEl)obs.observe(cvEl);
 
-  function animRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx - 18 + 'px';
-    ring.style.top = ry - 18 + 'px';
-    requestAnimationFrame(animRing);
-  }
-  animRing();
-
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'scale(2)';
-      ring.style.transform = 'scale(1.5)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'scale(1)';
-      ring.style.transform = 'scale(1)';
-    });
-  });
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-          bar.style.width = bar.style.width;
-        });
-      }
-    });
-  });
-  document.querySelectorAll('.cv-section').forEach(el => observer.observe(el));
+// Nav active link highlight
+const secs=document.querySelectorAll('section[id]');
+const navAs=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let active='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-130)active=s.id;});
+  navAs.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+active?'var(--green)':'';});
+});
 </script>
 </body>
 </html>
